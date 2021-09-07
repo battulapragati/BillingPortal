@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-// Load User model
-//const User = require('../models/User');
+
 const { forwardAuthenticated } = require('../config/auth');
 
 // Login Page
@@ -70,14 +69,6 @@ router.post('/register', async(req, res) => {
                   'success_msg', 'You are now registered and can log in');
               });
               res.redirect('/users/login');
-           // db.collection("OauthUsers").update({password:newUser.password})
-              //  .then (user => {
-                  
-              //     res.redirect('/users/login');
-              //   })
-              //  .catch(err => console.log(err));
-                // if (err) throw err;
-                // console.log('new user registered');
               });
                 
               });
@@ -85,33 +76,6 @@ router.post('/register', async(req, res) => {
           });
         }
       });
-// else {
-//         const newUser = new OauthUsers({
-//           name,
-//           email,
-//           password
-//         });
-
-//         bcrypt.genSalt(10, (err, salt) => {
-//           bcrypt.hash(newUser.password, salt, (err, hash) => {
-//             if (err) throw err;
-//             newUser.password = hash;
-//             newUser
-//               .save()
-//               .then(user => {
-//                 req.flash(
-//                   'success_msg',
-//                   'You are now registered and can log in'
-//                 );
-//                 res.redirect('/users/login');
-//               })
-//               .catch(err => console.log(err));
-//           });
-//         });
-//       }
-//     });
-//   }
-// });
 
 // Login
 router.post('/login', (req, res, next) => {

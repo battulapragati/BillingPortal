@@ -3,7 +3,6 @@ const app = express()
 const { MongoClient } = require('mongodb')
 const cors=require("cors");
 const expressLayouts = require('express-ejs-layouts');
-//const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -24,31 +23,6 @@ var mongoUtil = require( './mongoUtil.js' );
 
 mongoUtil.connectToServer();
 var db = mongoUtil.getDb();
-
-//DB Config
-//const db = require('./config/keys').mongoURI;
-
-//Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true ,useUnifiedTopology: true}
-//   )
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
-
-// Connection URL
-// const url = 'mongodb+srv://billingportal:billingportal@cluster0.u2dib.mongodb.net/BillingPortal'
-// const client = new MongoClient(url) // creating a bridge here  between the app and the db server
-
-// client.connect().then(data=>{
-//     console.log("connected to db");
-// })
-
-// const dbName = 'BillingPortal'
-// const db = client.db(dbName)
-
-
 
 if(db.collection("OauthUsers").count==0){
   db.collection("OauthUsers").insertOne( { name: " ", email: " ", password: " ", date: date() } )

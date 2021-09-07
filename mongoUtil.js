@@ -14,10 +14,6 @@ module.exports = {
     
     const dbName = 'BillingPortal'
     _db = client.db(dbName)
-    // MongoClient.connect( url,  { useNewUrlParser: true }, function( err, client ) {
-    //   _db  = client.db('BillingPortal');
-    //   return callback( err );
-    // } );
   },
 
   getDb: function() {

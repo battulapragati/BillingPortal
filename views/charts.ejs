@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<style>
+	.canvasjs-chart-canvas {
+  box-shadow: inset 0 3px 6px darkgray, 0 4px 6px lightgrey;
+  border-radius: 3px;
+}
+</style>
 <script>
 window.onload = function() {
 //chart 1 datapoints
@@ -40,7 +46,8 @@ var chart = new CanvasJS.Chart("chartContainer1", {
 	animationEnabled: true,
 	//theme: "light2",
 	title: {
-		text: "Paid Users vs Unpaid Users"
+		text: "Paid Users vs Unpaid Users",
+		horizontalAlign: "left",padding:3
 	},
 	data: [{
 		type: "pie",
@@ -48,8 +55,8 @@ var chart = new CanvasJS.Chart("chartContainer1", {
 		yValueFormatString: "##0.00\"%\"",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: paid, label: "Paid Users"},
-			{y: unpaid, label: "Unpaid users"}
+			{y: paid, label: "Paid Users",color: "#FFA07A"},
+			{y: unpaid, label: "Unpaid users",color: "#20B2AA"}
 		]
 	}]
 });
@@ -62,7 +69,8 @@ var chart = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
 	zoomEnabled: false,
 	title:{
-		text: "Top billed customers vs Bill for Broadband data consumption"
+		text: "Top billed customers vs Bill for Broadband data consumption",
+		horizontalAlign: "left"
 	},
 	axisX: {
 		title:"Company ID of top billed customers",
@@ -98,7 +106,8 @@ var chart = new CanvasJS.Chart("chartContainer3",
     {
         animationEnabled: true,
         title: {
-            text: "Top billed customers vs Bill for mobile data consumption "
+            text: "Top billed customers vs Bill for mobile data consumption ",
+			horizontalAlign: "left"
         },
         axisX: {
             title:"Company ID of top billed customers",
@@ -137,7 +146,8 @@ var chart = new CanvasJS.Chart("chartContainer4", {
 	theme: "light1",
 	title:{
 		text: "customer Mobile Types",
-		horizontalAlign: "left"
+		horizontalAlign: "left",
+		padding:3
 	},
 	data: [{
 		type: "doughnut",
@@ -147,8 +157,8 @@ var chart = new CanvasJS.Chart("chartContainer4", {
 		indexLabel: "{label}",
 		dataPoints: [
 			{ y: iphone, label: "Iphone"},
-			{ y: samsung, label: "Samsung"},
-			{ y: nokia, label: "Nokia"}
+			{ y: samsung, label: "Samsung",color:"#DB7093"},
+			{ y: nokia, label: "Nokia",color:"#8FBC8F"}
 		]
 	}]
 });
@@ -161,10 +171,10 @@ chart.render();
 <body >	
 <%- include('header'); -%>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<br/><br/><br/><br/><br/>
-<div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;  "></div> 
-<div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block; "></div><br/><br/><br/>
-<div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
+<br/><br/><br/><br/>
+<div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;  "></div>&ensp;&ensp;&ensp;&ensp;
+<div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block; "></div><br/><br/>
+<div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>&ensp;&ensp;&ensp;&ensp;
 <div id="chartContainer4" style="width: 45%; height: 300px;display: inline-block;"></div>
 </div>
 </body>

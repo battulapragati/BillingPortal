@@ -1,7 +1,8 @@
 var express = require('express');
+const { ensureAuthenticated } = require('./config/auth');
 var router = express.Router();
 
-router.get("/",async(req,res)=>{
+router.get("/",ensureAuthenticated, async(req,res)=>{
 	const db=req.db;
     var options = {
         allowDiskUse: false
@@ -76,7 +77,7 @@ res.render('./dashboard.ejs',{priceArray:slicedArray,unpaidUsers:dataCombinedSli
 })
 
 // Search Api
-router.post("/searchBar",async(req,res)=>{
+router.post("/searchBar", ensureAuthenticated, async(req,res)=>{
     
     const body=req.body.state;
 
@@ -158,7 +159,7 @@ router.post("/searchBar",async(req,res)=>{
 })
 
 /// Api to get the bill
-router.get("/getBill/:id",async(req,res)=>{
+router.get("/getBill/:id", ensureAuthenticated, async(req,res)=>{
     const db=req.db; 
 	var options = {
         allowDiskUse: false
@@ -223,7 +224,7 @@ router.get("/getBill/:id",async(req,res)=>{
 
 //dynmaically generate an invoice  based on the company id passed
 
-router.get("/generateInvoice/:id",async(req,res)=>{
+router.get("/generateInvoice/:id",ensureAuthenticated, async(req,res)=>{
     const db=req.db; //
 
     // checking if invoice already exists
@@ -294,7 +295,7 @@ db.collection("invoices").insertOne({...dataCombined[0],invoice_id:`invoice${req
 }
 })
 
-router.get("/getInvoice/:id",async(req,res)=>{
+router.get("/getInvoice/:id", ensureAuthenticated, async(req,res)=>{
     let db=req.db;
     console.log(req.params.id);
     let invoiceId=req.params.id
@@ -314,7 +315,7 @@ else{
 
 //charts api
 
-router.get("/charts",async(req,res)=>{
+router.get("/charts", ensureAuthenticated, async(req,res)=>{
     const db=req.db; 
     const status = db.collection("status");
 

@@ -93,10 +93,8 @@ body {
     <script>
     function handleSubmit (id) {
 
-
-
 fetch(`/api/generateInvoice/${id}`, {
-  method: 'GET', // or 'PUT'
+  method: 'GET',
   headers: {
     'Content-Type': 'application/json',
   }
@@ -109,36 +107,10 @@ fetch(`/api/generateInvoice/${id}`, {
 })
 .catch((error) => {
   console.error('Error:', error);
-});
-/*
-
-    window.open('invoice.ejs+=custID','_blank');
-    
-    const name = document.getElementById('name').textContent;
-    const date = document.getElementById('date').textContent;
-    const custID = document.getElementById('custID').textContent;
-
-    const bu = document.getElementById('b-u').textContent;
-    const bp = document.getElementById('b-p').textContent;
-    const bt = document.getElementById('b-t').textContent;
-
-    const total = document.getElementById('total').textContent;
-        
-    sessionStorage.setItem("NAME", name);
-    sessionStorage.setItem("DATE",date);
-    sessionStorage.setItem("CUSTID",custID);
-
-    sessionStorage.setItem("BBU", bu);
-    sessionStorage.setItem("BBP",bp);
-    sessionStorage.setItem("BBT",bt); 
-    //mobile session stroage to be added 
-    
-    sessionStorage.setItem("TOTAL",total);
-    */
-       
+});       
     return;
 }
-    </script>
+</script>
 </div>
 </body>
 </html>

@@ -7,44 +7,24 @@ const keys = require('./keys');
 //const User = require('../models/User');
 var mongoUtil = require( '../mongoUtil.js' )
 
-
-
  passport.use(
-    new GoogleStrategy({
-        // options for google strategy
-        
+    new GoogleStrategy({        
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
       var db = mongoUtil.getDb();
       db.collection("OauthUsers").findOne({email: profile.emails[0].value}, function(err, result) {
-        if (err) { /* handle err */ }
-    
+
         if (result) {
-            // we have a result
-            //return done(null, false, { message: 'That email is not registered' });
               console.log("user exists")
               done(null, result);
         } else {
-            // we don't
           
-            console.log("user does not exists exists")
+            console.log("user does not exist in the database")
               done(null, result);
         }
     })
-    //.then(user => {
-    //         if (user) {
-    //           //return done(null, false, { message: 'That email is not registered' });
-    //           console.log("user exists")
-    //           done(null, user);
-    //         }
-    //         else
-    //         {
-    //           console.log("user does not exists exists")
-    //           done(null, user);
-    //         }
-    //     });
     })
 );
 
@@ -72,7 +52,6 @@ var mongoUtil = require( '../mongoUtil.js' )
     })
   );
 
-  
   passport.serializeUser(function(result, done) {
     done(null, result);
   });
@@ -83,11 +62,4 @@ var mongoUtil = require( '../mongoUtil.js' )
       id: user.provider_id
     });
   });
-
-  // passport.deserializeUser(function(id, done) {
-  //   var db = mongoUtil.getDb();
-  //   db.collection("OauthUsers").findById(id, function(err, user) {
-  //     done(err, user);
-  //   });
-  // });
 

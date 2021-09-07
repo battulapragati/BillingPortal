@@ -15,5 +15,4 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     res.redirect('/api');
 });
 
-
 module.exports = router;
