@@ -38,6 +38,8 @@ var mongoUtil = require( '../mongoUtil.js' )
         if (!user) {
           return done(null, false, { message: 'That email is not registered' });
         }
+        //console.log(user.email);
+        //console.log(user.name);
 
         // Match password
         bcrypt.compare(password, user.password, (err, isMatch) => {

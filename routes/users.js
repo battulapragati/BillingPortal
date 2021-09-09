@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+var mongoUtil = require( '../mongoUtil.js' )
 
 const { forwardAuthenticated } = require('../config/auth');
 

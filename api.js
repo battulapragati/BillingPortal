@@ -410,6 +410,35 @@ router.get("/charts", ensureAuthenticated, async(req,res)=>{
                                iphonePer:iphonePer,samsungPer:samsungPer,nokiaPer:nokiaPer});
 })
 
+// router.get("/profile/:email",(req,res)=>{
+//     const db=req.db; 
+// 	var options = {
+//         allowDiskUse: false
+//     };
+//     const  pipelineEmp = [
+
+//         {
+//             "$match":{"email":parseFloat(req.params.email)}
+
+//         },
+//         {
+
+//             "$lookup": {
+//                 "from": "OauthUsers",
+//                 "localField": "email",
+//                 "foreignField": "email",
+//                 "as": "EmpInfo"
+//             }
+//         },
+//         {   $unwind:"$EmpInfo" }, 
+//     ];
+    
+//     let empData=pipelineEmp.toArray();
+//     console.log(empData);
+//     res.render("./profile.ejs",{empData:empData});
+//     res.render("./profile.ejs");
+// })
+
 router.get("/searchbar",(req,res)=>{
     res.render("index");
 })
