@@ -1,6 +1,43 @@
 var express = require('express');
 const { ensureAuthenticated } = require('./config/auth');
 var router = express.Router();
+let ejs = require("ejs");
+let pdf = require("html-pdf");
+let path = require("path")
+
+router.get("/getpdf/:id", async(req,res)=>{
+    let db=req.db;
+    console.log(req.params.id);
+    let invoiceId=req.params.id
+    let invoiceData;
+if(invoiceId.includes("invoice"))
+{
+    invoiceData= await db.collection("invoices").find({invoice_id:req.params.id}).toArray()
+}
+else{
+    invoiceData=await db.collection("invoices").find({invoice_id:`invoice${req.params.id}`}).toArray()
+
+}
+ejs.renderFile(path.join(__dirname, './views/', "invoicePdf.ejs"), {invoiceData:invoiceData[0]}, (err, data) => {
+    if (err) {
+          res.send(err);
+    } else {
+        let options = {
+            "height": "18.25in",
+            "width": "16.25in",
+            "header": {
+                "height": "20mm"
+            },
+            "footer": {
+                "height": "20mm",
+            },
+        };
+        pdf.create(data, options).toStream(function (err,stream) {
+            stream.pipe(res);
+          })
+    }
+});
+})
 
 router.get("/",ensureAuthenticated, async(req,res)=>{
 	const db=req.db;
