@@ -23,8 +23,8 @@ ejs.renderFile(path.join(__dirname, './views/', "invoicePdf.ejs"), {invoiceData:
           res.send(err);
     } else {
         let options = {
-            "height": "18.25in",
-            "width": "16.25in",
+            "height": "12.25in",
+            "width": "12.00in",
             "header": {
                 "height": "20mm"
             },
@@ -107,7 +107,6 @@ router.get("/",ensureAuthenticated, async(req,res)=>{
         }
       
  ];
-
  var dataCombined1 =await  db.collection("customer").aggregate(pipeline1, options).toArray();
  const dataCombinedSliced=dataCombined1.slice(0,100);
 res.render('./dashboard.ejs',{priceArray:slicedArray,unpaidUsers:dataCombinedSliced});	
@@ -255,6 +254,7 @@ router.get("/getBill/:id", ensureAuthenticated, async(req,res)=>{
        return acc;
 
     },[])
+    //console.log(mobileArray)
     
     res.render('./bill.ejs',{mobileArray:mobileArray[0],customerName:customerName});
 })

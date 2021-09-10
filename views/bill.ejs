@@ -44,11 +44,11 @@ body {
                 </div>
                 <div class="mt-3">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Service</th>
-                                    <th>Usage</th>
+                                    <th>Usage & Billing</th>
                                     <th>Price</th>
                                     <th>Total</th>
                                 </tr>
@@ -56,16 +56,19 @@ body {
                             <tbody>
                                 <tr>
                                     <td>Broadband</td>
-                                        <td id="m-u" name="m-u"><%= mobileArray.broadbandDataConsumption%></td>
-                                        <td id="m-p" name="m-p" ><%= mobileArray.broadBandPrice %></td>
-                                        <td id="m-t" name="m-t"><%= mobileArray.bbTotal%></td>
+                                        <td id="m-u" name="m-u">Data: <%= mobileArray.broadbandDataConsumption%> MB * 10 cents</td>
+                                        <td id="m-p" name="m-p" >$<%= mobileArray.broadBandPrice %><br/>+ $105</td>
+                                        <td id="m-t" name="m-t">$<%= mobileArray.bbTotal%></td>
                                 </tr>
                                 <tr>
                                     <td>Mobile</td>
                                  
-                                        <td id="m-u" name="m-u"><%= mobileArray.data_consumption %></td>
-                                        <td id="m-p" name="m-p" ><%= mobileArray.mobilePrice %></td>
-                                        <td id="m-t" name="m-t"><%= mobileArray.mobileTotal%></td>
+                                        <td id="m-u" name="m-u">
+                                            Data: <%= mobileArray.data_consumption %> MB * 10 cents<br>
+                                            Sms: <%= mobileArray.sms %> sms * 5 cents<br>
+                                            Calls: <%= mobileArray.call_duration %> minutes * 10 cents</td>
+                                        <td id="m-p" name="m-p" >$<%= mobileArray.mobilePrice %><br>+ $50</td>
+                                        <td id="m-t" name="m-t">$<%= mobileArray.mobileTotal%></td>
                                
                                 </tr>
                                 <tr>
@@ -73,9 +76,9 @@ body {
                                     <td></td>
                                     <td>Total</td>
                                     <td id="total" name="total">
-                                        <%= (mobileArray.bbTotal)%> + <%= mobileArray.mobileTotal%>
+                                        $<%= (mobileArray.bbTotal)%> + $<%= mobileArray.mobileTotal%>
                                           =
-                                          <%= mobileArray.totalPrice%>
+                                          $<%= mobileArray.totalPrice%>
                                     </td>
                                 </tr>
                             </tbody>
