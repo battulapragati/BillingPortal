@@ -85,7 +85,7 @@ router.get("/",ensureAuthenticated, async(req,res)=>{
     priceArray.sort((a,b)=>{
        return a.price>b.price ?-1 :a.price==b.price?0:1;
     })
-    let slicedArray=priceArray.slice(0,100);
+    let slicedArray=priceArray.slice(0,10);
 	//console.log({priceArray:slicedArray});
 	
     const  pipeline1 = [

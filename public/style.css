@@ -17,13 +17,13 @@
 }
 
 #searchForm input[type=submit] {
-	background-color: #00A7E8;
+	background-color: #082567;
 	color:#fff;
 	border:none;
 }
 
 .dropbtn {
-  background-color: #00A7E8;
+  background-color: #082567;
   color: white;
   padding: 16px;
   font-size: 21px;
@@ -59,7 +59,8 @@
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #00A7E8;
+  background-color: #89CFF0;
+  color: #000;
 }
 
 .scrollable-menu {
