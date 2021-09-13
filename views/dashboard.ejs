@@ -106,7 +106,7 @@
     console.log('Success:', data);
 
     let bodyData=data.customer.reduce((acc,ele)=>{
-      acc+=`<tr><td> &nbsp;&nbsp ${ele.company_id} &nbsp;&nbsp <a href="/api/getBill/${ele.company_id}" target="_blank">${ele.company_name}</a></td></tr>`
+      acc+=`<tr><td> &nbsp;&nbsp ${ele.company_id} &nbsp;&nbsp <a href="/api/getBill/${ele.company_id}">${ele.company_name}</a></td></tr>`
       // acc+=`<ul style="border: 1px solid #acacac;width: 900px; height:35px; background:	#F0F0F0;font-size: 19px;font-size: 1.9rem;color: black;">
       //   <li class="fa fa-search"> &nbsp;&nbsp ${ele.company_id} &nbsp;&nbsp <a href="/api/getBill/${ele.company_id}" target="_blank">${ele.company_name}</a></li>
       //   </ul>`
@@ -136,8 +136,8 @@ return acc;
  else if(value && data.includes("bills"))
   {
     // redirect to the bills
-    window.open(`/api/getBill/${value}`, '_blank').focus();
-    //window.location.href=`/api/getInvoice/${value}`
+    //window.open(`/api/getBill/${value}`, '_blank').focus();
+    window.location.replace(`/api/getBill/${value}`).focus();
   }
 
   else{

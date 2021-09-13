@@ -73,9 +73,13 @@ body {
   <div class="header-right">
     <a class="active" href="/api">Home</a> &nbsp;&nbsp;
     <a class="active" href="/api/charts">Graphical Analysis</a>
-    <a class="active" href="/users/logout">Logout</a>  
+    <a class="active" href="/users/logout" onclick="noBack()">Logout</a>
     <!-- <a class="active" href="/users/profile">Profile</a>  -->
   </div>
 </div>
 </body>
+ <script type="text/javascript">
+  window.history.forward();
+	function noBack() { window.history.forward(); }
+  </script> 
 </html>
