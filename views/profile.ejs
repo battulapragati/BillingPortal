@@ -4,20 +4,20 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <script>var error ="<%= error %>"
-   alert(error)</script> 
 </head>
+<%- include('header'); -%>
 <body>
+  <br/><br/><br/><br/><br/>
   <%- include('partials/messages'); %>
    <br/>
     <div class="card">
-    <div class="card-header"><b>Employee Details</b></div>
+    <div class="card-header" style="background-color:#89CFF0;"><h4><b>Employee Details</b></h4></div>
     <div class="card-body">
     <p>
       <div>
       <h5 class="card-title">Employee Name: <%= user.name %></h5>
       <h5 class="card-title">Employee Email-ID: <%= user.email%></h5>
-      <button class="btn btn-primary" id="newPassBtn">Change Password?</button>
+      <button class="btn btn-primary" id="newPassBtn" style="background-color: #082567;">Change Password?</button>
     </div>
       <br/>
 
@@ -30,9 +30,6 @@
               <div class="form-group">
                 <label class="sr-only" for="oldPassword">Current Password</label>
                 <input class="form-control form-control-sm" id="oldPassword" name="password" placeholder="Current Password" required type="password" autocomplete="off" aria-describedby="inputGroupPrepend">
-                <div class="invalid-feedback">
-                  Please enter current password.
-                </div>
               </div>
         
               <div class="form-group">
@@ -41,24 +38,17 @@
                   <div class="input-group">
         
                     <input name="newPassword" type="password" autocomplete="off" class="form-control form-control-sm" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend">
-                    <div class="invalid-feedback">
-                      Please enter new password.
-                    </div>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label class="sr-only" for="confirmPassword">Confirm Password</label>
                 <div class="input-group">
-        
                   <input name="confirmPassword" type="password" autocomplete="off" class="form-control form-control-sm" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend">
-                  <div class="invalid-feedback">
-                    Password not a match.
-                  </div>
                 </div>
               </div>
         
-              <button id="submitBtn" class="btn btn-md btn-primary btn-block" type="submit">Update</button>
+              <button id="submitBtn" class="btn btn-md btn-primary btn-block" style="background-color: #082567;" type="submit">Update</button>
         
             </div>
           </div>

@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
-//var mongoUtil = require( '../mongoUtil.js' )
 const { forwardAuthenticated } = require('../config/auth');
 var currentEmail = require('../config/passport')
 
@@ -13,8 +10,6 @@ var currentEmail = require('../config/passport')
   db.collection("OauthUsers").findOne({
     email: currentEmail.currentEmail
   }).then(user => {
-    //console.log(user.email);
-    //console.log(user.name);
     res.render('profile.ejs',{user});
   });
 
@@ -23,9 +18,7 @@ var currentEmail = require('../config/passport')
   //update password
   router.post('/updatePassword', (req, res) => {
     const db=req.db;
-    const {password, newPassword, confirmPassword } = req.body;
-    //console.log(req.body);
-  
+    const {password, newPassword, confirmPassword } = req.body;  
 
   db.collection("OauthUsers").findOne({
     email: currentEmail.currentEmail
@@ -40,7 +33,7 @@ var currentEmail = require('../config/passport')
   errors.push({ msg: 'Passwords do not match' });
   }
   if (password == newPassword) {
-    errors.push({ msg: 'hi' });
+    errors.push({ msg: 'Your old password and new password should be different. Please try again.' });
     }
   if (newPassword.length < 6) {
     errors.push({ msg: 'Password must be at least 6 characters' });
@@ -53,7 +46,7 @@ var currentEmail = require('../config/passport')
       user
     });
   }
-    // console.log(user.password);
+  
     else{ bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) throw err;
 
@@ -61,23 +54,24 @@ var currentEmail = require('../config/passport')
         
        bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newPassword, salt, (err, hash) => {
-            //if (err) throw err;
             pass = hash;
             db.collection("OauthUsers").updateOne({email: user.email}, {$set:{"password":pass}},function(err, res){
               if (err) throw err;
               console.log("Password Changed")
-              //alert('Password updated');
             });
-            res.redirect('/users/profile',{user});
+            let errors = [];
+            errors.push({ msg: 'Your password has been updated' });
+            res.render('profile', {user:user,errors:errors});
+            //res.redirect('/users/profile',{user});
             });
               
             });
-        //return done(null, user);
        }
       else {
        console.log('Current Password is incorrect')
-        var error = 'Current Password is incorrect';
-       res.render('profile', {user}, error);
+       let errors = [];
+       errors.push({ msg: 'Current password is incorrect' });      
+       res.render('profile', {user:user,errors:errors});
       }
     
     
@@ -85,7 +79,5 @@ var currentEmail = require('../config/passport')
   }
 
   });
-
-
   });
   module.exports = router;
