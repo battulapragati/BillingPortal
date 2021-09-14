@@ -6,6 +6,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./keys');
 //const User = require('../models/User');
 var mongoUtil = require( '../mongoUtil.js' )
+var currentEmail ="";
 
  passport.use(
     new GoogleStrategy({        
@@ -19,6 +20,18 @@ var mongoUtil = require( '../mongoUtil.js' )
         if (result) {
               console.log("user exists")
               done(null, result);
+              //current user
+              module.exports.currentEmail = profile.emails[0].value
+              //console.log(currentEmail)
+        // db.collection("OauthUsers").updateOne(
+        //   { email : profile.emails[0].value},
+        //   {
+        //     $set :
+        //             {
+        //               "current" : 1
+        //             }
+        //   }
+        //   )
         } else {
           
             console.log("user does not exist in the database")
@@ -41,6 +54,10 @@ var mongoUtil = require( '../mongoUtil.js' )
         //console.log(user.email);
         //console.log(user.name);
 
+        //current user
+        module.exports.currentEmail=email;
+        //console.log(currentEmail)
+        
         // Match password
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
@@ -65,3 +82,4 @@ var mongoUtil = require( '../mongoUtil.js' )
     });
   });
 
+module.exports.currentEmail = currentEmail;

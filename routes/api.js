@@ -1,11 +1,11 @@
 var express = require('express');
-const { ensureAuthenticated } = require('./config/auth');
+const { ensureAuthenticated } = require('../config/auth');
 var router = express.Router();
 let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path")
 
-router.get("/getpdf/:id", async(req,res)=>{
+router.get("/getpdf/:id", ensureAuthenticated, async(req,res)=>{
     let db=req.db;
     console.log(req.params.id);
     let invoiceId=req.params.id
@@ -111,6 +111,8 @@ router.get("/",ensureAuthenticated, async(req,res)=>{
  const dataCombinedSliced=dataCombined1.slice(0,100);
 res.render('./dashboard.ejs',{priceArray:slicedArray,unpaidUsers:dataCombinedSliced});	
 })
+
+
 
 // Search Api
 router.post("/searchBar", ensureAuthenticated, async(req,res)=>{
@@ -478,5 +480,9 @@ router.get("/charts", ensureAuthenticated, async(req,res)=>{
 
 router.get("/searchbar",(req,res)=>{
     res.render("index");
+})
+
+router.get("/dashboard",(req,res)=>{
+    res.redirect("/api");
 })
 module.exports = router;

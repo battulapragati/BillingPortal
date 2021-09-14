@@ -4,23 +4,26 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+   <script>var error ="<%= error %>"
+   alert(error)</script> 
 </head>
 <body>
-    <br/><br/><br/><br/><br/>
+  <%- include('partials/messages'); %>
+   <br/>
     <div class="card">
     <div class="card-header"><b>Employee Details</b></div>
     <div class="card-body">
     <p>
       <div>
-      <h5 class="card-title">Employee Name: </h5>
-      <h5 class="card-title">Employee Email-ID: </h5>
+      <h5 class="card-title">Employee Name: <%= user.name %></h5>
+      <h5 class="card-title">Employee Email-ID: <%= user.email%></h5>
       <button class="btn btn-primary" id="newPassBtn">Change Password?</button>
     </div>
       <br/>
 
       <div id="newPass" style="display:none">
-        <form class="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
+        
+        <form action="/profile/updatePassword" method="POST" class="form-signin needs-validation">
           <div class="card shadow-sm">
             <div class="card-body">
         

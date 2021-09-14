@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 var mongoUtil = require( '../mongoUtil.js' )
-
 const { forwardAuthenticated } = require('../config/auth');
+var currentEmail = require('../config/passport')
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
@@ -13,12 +13,13 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
-// Register
+// Registering
 router.post('/register', async(req, res) => {
   const db=req.db;
   const { name, email, password, password2, adminpassword } = req.body;
   let errors = [];
-
+  
+  
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });
   }
@@ -90,9 +91,11 @@ router.post('/login', (req, res, next) => {
 
 // Logout
 router.get('/logout', (req, res) => {
+  const db=req.db;
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
+
 
 module.exports = router;
