@@ -1,11 +1,11 @@
 var express = require('express');
-const { ensureAuthenticated } = require('../config/auth');
+const { ensureAuthenticated } = require('./config/auth');
 var router = express.Router();
 let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path")
 
-router.get("/getpdf/:id", ensureAuthenticated, async(req,res)=>{
+router.get("/getpdf/:id", async(req,res)=>{
     let db=req.db;
     console.log(req.params.id);
     let invoiceId=req.params.id

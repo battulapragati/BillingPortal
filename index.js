@@ -69,7 +69,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/auth', require('./routes/auth-routes.js'));
-app.use("/api", require("./routes/api"));
+app.use("/api", require("./api"));
 app.use("/profile", require("./routes/profile"));
 
 module.exports = app
