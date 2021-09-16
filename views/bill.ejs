@@ -105,7 +105,8 @@ fetch(`/api/generateInvoice/${id}`, {
 .then(response => response.json())
 .then(data => {
   console.log('Success:', data);
-  window.open(`/api/getInvoice/${id}`, '_blank').focus();
+  //window.open(`/api/getInvoice/${id}`, '_blank').focus();
+  window.location.replace(`/api/getInvoice/${id}`).focus();
 
 })
 .catch((error) => {

@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="shortcut icon" sizes="114x114" type="image/x-icon" href="https://1000logos.net/wp-content/uploads/2018/07/Telstra-Logo.png">
-	<title> Telstra Billing Portal</title>
+	<title>Paymon</title>
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="/style.css" rel="stylesheet" type="text/css"/>
@@ -134,8 +134,8 @@ return acc;
   if(value && value.includes("invoice"))
   {
     // redirect to the invoice
-    window.open(`/api/getInvoice/${value}`, '_blank').focus();
-    //window.location.href=`/api/getInvoice/${value}`
+    //window.open(`/api/getInvoice/${value}`, '_blank').focus();
+    window.location.replace(`/api/getInvoice/${value}`).focus();
   }
  else if(value && data.includes("bills"))
   {
