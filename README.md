@@ -1,6 +1,6 @@
-**PAYMON - The Billing Portal
+**PAYMON - The Billing Portal**
 
-**OBJECTIVE**
+**OBJECTIVE**<br/>
 To develop a Billing Portal for the employees that provides a platform to get information about bills and generate invoices of customers.
 The Employee should be able to register in the portal using OAuth2.0.
 
